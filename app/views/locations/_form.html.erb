@@ -1,0 +1,15 @@
+<div class="mt-3 border rounded px-3 py-2">
+  <%= simple_form_for location do |form| %>
+    <% if location.errors.any? %>
+      <div class="d-block invalid-feedback">
+        <%= location.errors.full_messages.to_sentence.capitalize %>
+      </div>
+    <% end %>
+
+    <div class="d-flex">
+      <%= form.input :address, input_html: {autofocus: true } %>
+      <%= link_to "Cancel", locations_path, class: 'btn btn-outline-danger ms-3' %>
+      <%= form.submit class: 'btn btn-secondary ms-3' %>
+    </div>
+  <% end %>
+</div>

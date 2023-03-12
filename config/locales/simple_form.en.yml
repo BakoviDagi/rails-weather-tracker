@@ -1,0 +1,14 @@
+en:
+  simple_form:
+    placeholders:
+      location:
+        address: Address or IP to track
+    labels:
+      location:
+        address: Address
+
+  helpers:
+    submit:
+      location:
+        create: Add
+        update: Update

@@ -1,0 +1,18 @@
+<%= turbo_frame_tag location do %>
+  <div class="mt-3 border rounded px-3 py-2">
+    <div class="d-flex">
+      <%= link_to location.address,
+                  location_path(location),
+                  class: "me-auto my-auto",
+                  data: { turbo_frame: "#{dom_id(location)}_show" } %>
+      <div class="d-flex">
+        <%= button_to "Delete", location_path(location), method: :delete, class: "btn btn-outline-danger me-3" %>
+        <%= link_to "Edit", edit_location_path(location), class: 'btn btn-light' %>
+      </div>
+    </div>
+
+    <div class="w-100">
+      <%= turbo_frame_tag "#{dom_id(location)}_show" %>
+    </div>
+  </div>
+<% end %>

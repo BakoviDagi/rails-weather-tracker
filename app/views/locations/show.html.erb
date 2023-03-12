@@ -1,0 +1,63 @@
+<main class="container">
+  <%= link_to "< Back", locations_path %>
+  <div class="header">
+    <h1>
+      <%= @location.address %>
+    </h1>
+
+    <%= turbo_frame_tag "#{dom_id(@location)}_show" do %>
+      <div>
+        <%= link_to "Hide", locations_path %>
+      </div>
+      <% if @has_response then %>
+        <%= @actual_location %>
+
+        <div style="overflow-x: scroll;">
+          <div class="d-flex px-2 py-3 gap-3">
+            <% @days.each do |day| %>
+              <div class="d-flex">
+                <div>
+                  <%= image_tag(day[:icon],
+                                :alt => day[:condition],
+                                :width => 36,
+                                :height => 36) %>
+                </div>
+                <div>
+                  <div class="text-nowrap">
+                    <strong>
+                      <%= day[:date] %>
+                    </strong>
+                    -
+                    <%= day[:condition] %>
+                  </div>
+                  <div class="text-nowrap">
+                  <span title="Low Temperature">
+                    <span style="color: #73aae3;">&#9660;</span><%= day[:low] %> &deg;F
+                  </span>
+                    &nbsp;
+                    <span title="High Temperature">
+                    <span style="color: #dd7272;">&#9650;</span><%= day[:high] %> &deg;F
+                  </span>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="chart-container"
+             data-controller="chart"
+             data-chart-id="<%= "chart_#{dom_id(@location)}" %>"
+             data-chart-highs="<%= @highs.to_json %>"
+             data-chart-lows="<%= @lows.to_json %>"
+        >
+          <canvas id="<%= "chart_#{dom_id(@location)}" %>" width="400" height="400"></canvas>
+        </div>
+      <% else %>
+        <div class="text-danger">
+          Error retrieving weather data! Please try again later
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</main>

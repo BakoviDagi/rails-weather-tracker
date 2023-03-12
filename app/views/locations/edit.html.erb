@@ -1,0 +1,11 @@
+<main class="container">
+  <%= link_to "< Back", locations_path %>
+
+  <div class="header">
+    <h1>Edit Location</h1>
+  </div>
+
+  <%= turbo_frame_tag @location do %>
+    <%= render "form", location: @location %>
+  <% end %>
+</main>
