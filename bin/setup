@@ -1,4 +1,4 @@
-#!/usr/bin/env ruby.exe
+#!/usr/bin/env ruby
 require "fileutils"
 
 # path to your application root.
@@ -23,11 +23,11 @@ FileUtils.chdir APP_ROOT do
   # end
 
   puts "\n== Preparing database =="
-  system! "ruby bin/rails db:prepare"
+  system! "bin/rails db:prepare"
 
   puts "\n== Removing old logs and tempfiles =="
-  system! "ruby bin/rails log:clear tmp:clear"
+  system! "bin/rails log:clear tmp:clear"
 
   puts "\n== Restarting application server =="
-  system! "ruby bin/rails restart"
+  system! "bin/rails restart"
 end

@@ -2,7 +2,7 @@ class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
 
   def index
-    @locations = Location.ordered
+    @locations = Location.for_user(current_user).ordered
   end
 
   def show
@@ -44,6 +44,7 @@ class LocationsController < ApplicationController
 
   def create
     @location = Location.new(location_params)
+    @location.user = current_user
 
     if @location.save
       respond_to do |format|

@@ -13,6 +13,21 @@
   </head>
 
   <body>
+
+    <div class="d-flex border-bottom bg-dark p-2">
+      <% if user_signed_in? %>
+        <div class="text-white my-auto ms-auto me-3">Welcome <%= current_user.email %></div>
+        <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger' %>
+      <% else %>
+        <div class="ms-auto">
+          <%= button_to "Sign In", new_user_session_path, class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
     <%= yield %>
   </body>
 </html>
